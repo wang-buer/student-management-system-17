@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alan.mapper.InstituteMapper">
+
+	<!--查询列表-->
+	<select id="getInstituteByPage" parameterType="string" resultType="com.alan.pojo.Institute">
+		SELECT
+		t.id,
+		t.name,
+		t.institute_number AS instituteNumber
+		FROM
+		t_institute t
+		WHERE 1=1
+		<if test=" name != null and name != '' ">
+			AND t.name LIKE CONCAT('%',#{name},'%')
+		</if>
+
+	</select>
+
+	<select id="findAllInstitute" resultType="com.alan.pojo.Institute">
+		SELECT
+		t.id,
+		t.name
+		FROM
+		t_institute t
+	</select>
+</mapper>
